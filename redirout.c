@@ -5,9 +5,9 @@
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 4)
+    if (argc < 3)
     {
-        printf("usage `redirout outfilename command [opt1[, opt2...]]");
+        printf("usage `redirout outfilename command [opt1[, opt2...]]\n");
     }
 
     return 0;
