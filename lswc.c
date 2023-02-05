@@ -9,8 +9,8 @@ int main(int argc, char const *argv[])
                                 ? argv[1]
                                 : NULL;
 
-    // make a pipe
-    int pipe_fd[2]; // 0 ← in, 1 ← out
+    // make an i/o pipe
+    int pipe_fd[2];
     pipe(pipe_fd);
 
     // fork
@@ -18,12 +18,13 @@ int main(int argc, char const *argv[])
 
     if (pid == -1)
     {
+        // error!
         perror("fork");
         return 1;
     }
     else if (pid == 0)
     {
-        // child process
+        // child process reads
         close(pipe_fd[1]);
         dup2(pipe_fd[0], 0);
         execlp("wc", "wc", "-l", NULL);
@@ -31,7 +32,7 @@ int main(int argc, char const *argv[])
     }
     else
     {
-        // parent process
+        // parent process writes
         close(pipe_fd[0]);
         dup2(pipe_fd[1], 1);
         execlp("ls", "ls", "-1a", directory);
