@@ -1,6 +1,6 @@
 #include <stdio.h>  // printf, perror
-#include <unistd.h> // exit
-#include <fcntl.h>  // fork, execlp, close
+#include <stdlib.h> // exit
+#include <unistd.h> // fork, execlp, close
 
 int main(int argc, char const *argv[])
 {
@@ -29,6 +29,7 @@ int main(int argc, char const *argv[])
         dup2(pipe_fd[0], 0);
         execlp("wc", "wc", "-l", NULL);
         perror("execlp");
+        exit(0);
     }
     else
     {
