@@ -5,41 +5,36 @@
 int main(int argc, char const *argv[])
 {
     // parse the command line
-    if (argc > 1)
-        printf("%s\n", argv[1]); // user provided a dir
+    const char *directory = (argc > 1)
+                                ? argv[1]
+                                : NULL;
 
+    // make a pipe
     int pipe_fd[2]; // 0 ← in, 1 ← out
     pipe(pipe_fd);
 
-    int fd = open("foo.out", O_CREAT | O_WRONLY, 0644); // r/w permissions
-
+    // fork
     pid_t pid = fork();
 
-    // handle fork error
     if (pid == -1)
     {
         perror("fork");
         return 1;
     }
-
-    // child process
-    if (pid == 0)
+    else if (pid == 0)
     {
-        // read end into stdin
-        dup2(pipe_fd[0], 0);
-        // close write end
+        // child process
         close(pipe_fd[1]);
-
-        // do wc
-        // execlp("/usr/bin");
-
+        dup2(pipe_fd[0], 0);
+        execlp("wc", "wc", "-l", NULL);
         perror("execlp");
-        exit(0);
     }
-
-    // write();
-
-    // wait(NULL);
-
-    close(fd);
+    else
+    {
+        // parent process
+        close(pipe_fd[0]);
+        dup2(pipe_fd[1], 1);
+        execlp("ls", "ls", "-1a", directory);
+    }
+    return 0;
 }
