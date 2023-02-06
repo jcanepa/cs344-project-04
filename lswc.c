@@ -32,5 +32,6 @@ int main(int argc, char const *argv[])
         const char *dir = (argc > 1) ? argv[1] : NULL;
         execlp("ls", "ls", "-1a", dir);
     }
+    close(pipe_fd);
     return 0;
 }

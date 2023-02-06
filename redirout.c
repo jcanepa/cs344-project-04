@@ -8,7 +8,9 @@ int main(int argc, char *argv[])
     // validate argument count
     if (argc < 3)
     {
-        printf("usage: `redirout outfilename command [-opt1[, -opt2...]]`\n");
+        printf(
+            "\nInsufficient number of arguments supplied to %s\n  usage: `redirout outfilename command [-opt1[, -opt2...]]`\n",
+            argv[0]);
         exit(1);
     }
 
@@ -53,11 +55,11 @@ int main(int argc, char *argv[])
         char buf[1024];
         ssize_t bytes_to_rw = read(pipe_fd[0], buf, 1024);
         write(fd, buf, bytes_to_rw);
+        close(pipe_fd[0]);
     }
 
     // housekeeping
     close(fd);
-    close(pipe_fd[0]);
 
     return 0;
 }
