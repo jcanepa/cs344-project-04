@@ -1,10 +1,10 @@
 # cs344-project-04
 
 Project contains two programs:  
-- `lscw` implements pipe the `|` shell operator using syscalls in C.
-- `redirout` redirects the output of the user's command into a specified file using pipes.
+- `lscw` implements the `|` shell pipe operator from scratch.
+- `redirout` redirects the output of the user's command into a specified file.
 
-Both demonstrate multi-processing, i/o, syscalls. The following functions `fork()`, `execlp()`, `execvp()`, `open()`, `read()`, `close()`.
+Both projects demonstrate multi-processing, i/o, pipes, syscalls. The following functions `fork()`, `execlp()`, `execvp()`, `open()`, `read()`, `close()` were relied upon heavily.
 
 ## Compilation  
 
