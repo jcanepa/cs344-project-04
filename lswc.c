@@ -4,21 +4,17 @@
 
 int main(int argc, char const *argv[])
 {
-    // parse the command line
     const char *directory = (argc > 1)
                                 ? argv[1]
                                 : NULL;
 
-    // i/o pipe
     int pipe_fd[2];
     pipe(pipe_fd);
 
-    // fork a child process
     pid_t pid = fork();
 
     if (pid == -1)
     {
-        // error!
         perror("fork");
         return 1;
     }
