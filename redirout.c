@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         char buf[1024];
         ssize_t bytes_to_rw;
 
-        while (bytes_to_rw = read(pipe_fd[0], buf, 1024) > 0)
+        while ((bytes_to_rw = read(pipe_fd[0], buf, 1024)) > 0)
             write(fd, buf, bytes_to_rw);
         close(pipe_fd[0]);
     }
