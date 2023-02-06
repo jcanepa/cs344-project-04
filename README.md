@@ -31,10 +31,10 @@ Usage:
 ./redirout out.txt ls -l -a
 ```
 
+Where `out.txt` is the filename to pipe command output to. And `ls ...` is a valid shell command.
+
 After running the program above, see the output file.
 
 ```
 cat out.txt
 ```
-
-Where `out.txt` is the filename to pipe command output to. And `ls ...` is a valid shell command.
