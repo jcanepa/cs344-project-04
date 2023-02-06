@@ -30,11 +30,11 @@ int main(int argc, char *argv[])
     }
     else if (pid == 0)
     {
-        // child passes syscall output into pipe
-        close(pipe_fd[0]);   // closes read end of pipe
+        // child writes syscall output into pipe
+        close(pipe_fd[0]);   // closes read end
         dup2(pipe_fd[1], 1); // connect write end to stdout
 
-        // parse command arguments
+        // retrieve command arguments
         char *command = argv[2];
         char **arguments = argv + 2;
 
@@ -45,10 +45,11 @@ int main(int argc, char *argv[])
     }
     else
     {
-        // parent
-        close(pipe_fd[1]);   // closes write end of pipe
+        // parent writes what is read from pipe
+        close(pipe_fd[1]);   // closes write end
         dup2(pipe_fd[0], 0); // connects read end to stdin
 
+        // read from pipe, write to file
         char buf[1024];
         ssize_t bytes_to_rw = read(pipe_fd[0], buf, 1024);
         write(fd, buf, bytes_to_rw);
