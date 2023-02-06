@@ -35,17 +35,11 @@ int main(int argc, char *argv[])
         dup2(pipe_fd[1], 1); // connect write end to stdout
 
         // parse command arguments
-        char *arguments[argc - 2];
-        int index = 0;
-        for (int i = 2; i < argc; i++)
-        {
-            arguments[index] = argv[i];
-            index++;
-        }
-        arguments[index] = NULL;
+        char *command = argv[2];
+        char **arguments = argv + 2;
 
         // make syscall
-        execvp(argv[2], arguments);
+        execvp(command, arguments);
         perror("execlp");
         exit(0);
     }
