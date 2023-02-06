@@ -28,10 +28,12 @@ Where `~` is any valid path. Ex: `/usr/bin`.
 Usage:
 
 ```
-# run the program
 ./redirout out.txt ls -l -a
+```
 
-# see the output in a file
+After running the program above, see the output file.
+
+```
 cat out.txt
 ```
 
