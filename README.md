@@ -1,4 +1,4 @@
-# Oregon State-Cascades CS344 Project 04
+# CS344 Project 04, OSU-Cascades
 
 Project contains two programs:
 
