@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
         // make syscall
         execvp(command, arguments);
-        perror("execlp");
+        perror("execvp");
         exit(0);
     }
     else
