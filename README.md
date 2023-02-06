@@ -28,7 +28,11 @@ Where `~` is any valid path. Ex: `/usr/bin`.
 Usage:
 
 ```
+# run the program
 ./redirout out.txt ls -l -a
+
+# see the output in a file
+cat out.txt
 ```
 
 Where `out.txt` is the filename to pipe command output to. And `ls ...` is a valid shell command.
