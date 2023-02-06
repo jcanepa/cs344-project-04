@@ -9,11 +9,11 @@ int main(int argc, char const *argv[])
                                 ? argv[1]
                                 : NULL;
 
-    // make an i/o pipe
+    // i/o pipe
     int pipe_fd[2];
     pipe(pipe_fd);
 
-    // fork
+    // fork a child process
     pid_t pid = fork();
 
     if (pid == -1)
