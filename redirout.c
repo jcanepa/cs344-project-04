@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     if (argc < 3)
     {
         printf(
-            "\nInsufficient number of arguments supplied to %s\n  usage: `redirout outfilename command [-opt1[, -opt2...]]`\n",
+            "\nInsufficient number of arguments supplied to %s\n  usage: `./redirout outfilename command [-opt1[, -opt2...]]`\n",
             argv[0]);
         exit(1);
     }
