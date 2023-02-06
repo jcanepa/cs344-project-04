@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     }
     else if (pid == 0)
     {
-        // child and passes syscall output into pipe
+        // child passes syscall output into pipe
         close(pipe_fd[0]);   // closes read end of pipe
         dup2(pipe_fd[1], 1); // connect write end to stdout
 
