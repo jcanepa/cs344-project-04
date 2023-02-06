@@ -4,9 +4,6 @@
 
 int main(int argc, char const *argv[])
 {
-    const char *directory = (argc > 1)
-                                ? argv[1]
-                                : NULL;
 
     int pipe_fd[2];
     pipe(pipe_fd);
@@ -32,7 +29,8 @@ int main(int argc, char const *argv[])
         // parent process writes
         close(pipe_fd[0]);
         dup2(pipe_fd[1], 1);
-        execlp("ls", "ls", "-1a", directory);
+        const char *dir = (argc > 1) ? argv[1] : NULL;
+        execlp("ls", "ls", "-1a", dir);
     }
     return 0;
 }
